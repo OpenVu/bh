@@ -333,6 +333,7 @@ def InitUsageConfig():
 
 	config.usage.show_picon_in_display = ConfigYesNo(default = True)
 	config.usage.hide_zap_errors = ConfigYesNo(default = False)
+	config.usage.hide_ci_messages = ConfigYesNo(default = False)
 	config.usage.show_cryptoinfo = ConfigYesNo(default = True)
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
 	config.usage.show_vcr_scart = ConfigYesNo(default = False)
@@ -410,6 +411,9 @@ def InitUsageConfig():
 			open(SystemInfo["LcdLiveDecoder"], "w").write(configElement.value)
 		config.usage.LcdLiveDecoder = ConfigSelection(default = "0", choices=[str(x) for x in range(0,4)])
 		config.usage.LcdLiveDecoder.addNotifier(setLcdLiveDecoder)
+		
+	config.misc.deliteepgpop = ConfigYesNo(default = True)
+	config.misc.deliteepgbuttons = ConfigYesNo(default = True)		
 
 	config.usage.boolean_graphic = ConfigSelection(default="true", choices={"false": _("no"), "true": _("yes"), "only_bool": _("yes, but not in multi selections")})
 
@@ -421,6 +425,7 @@ def InitUsageConfig():
 	config.epg.netmed = ConfigYesNo(default = True)
 	config.epg.virgin = ConfigYesNo(default = False)
 	config.epg.opentv = ConfigYesNo(default = False)
+	config.epg.sky = ConfigYesNo(default = True)
 	config.misc.showradiopic = ConfigYesNo(default = True)
 	def EpgSettingsChanged(configElement):
 		from enigma import eEPGCache
@@ -439,6 +444,8 @@ def InitUsageConfig():
 			mask &= ~(eEPGCache.VIRGIN_NOWNEXT | eEPGCache.VIRGIN_SCHEDULE)
 		if not config.epg.opentv.value:
 			mask &= ~eEPGCache.OPENTV
+		if not config.epg.sky.value:
+			mask &= ~eEPGCache.SKY			
 		eEPGCache.getInstance().setEpgSources(mask)
 	config.epg.eit.addNotifier(EpgSettingsChanged)
 	config.epg.mhw.addNotifier(EpgSettingsChanged)
@@ -447,6 +454,7 @@ def InitUsageConfig():
 	config.epg.netmed.addNotifier(EpgSettingsChanged)
 	config.epg.virgin.addNotifier(EpgSettingsChanged)
 	config.epg.opentv.addNotifier(EpgSettingsChanged)
+	config.epg.sky.addNotifier(EpgSettingsChanged)
 
 	config.epg.histminutes = ConfigSelectionNumber(min = 0, max = 120, stepwidth = 15, default = 0, wraparound = True)
 	def EpgHistorySecondsChanged(configElement):
