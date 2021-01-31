@@ -49,7 +49,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-        self["Universe"] = Label(self.whereIAm())
+		self["Universe"] = Label(self.whereIAm())
 		self["actions"] = HelpableActionMap(self, "InfobarActions",
 			{
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
@@ -83,7 +83,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		assert InfoBar.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
 		InfoBar.instance = self
         
-    def whereIAm(self):
+	def whereIAm(self):
 		ret = "Black Hole"
 		all = ["Avalon", "Chaos", "Ghost"]
 		f = open("/proc/mounts",'r')
@@ -92,7 +92,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				for a in all:
 					if line.find(a) != -1:
 						ret = a
-				break
+					break
 		f.close()
 		return "In %s universe" % (ret)
         
