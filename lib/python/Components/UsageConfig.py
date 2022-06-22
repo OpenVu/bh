@@ -38,7 +38,7 @@ def InitUsageConfig():
 
 	config.usage.hide_number_markers = ConfigYesNo(default=True)
 	config.usage.hide_number_markers.addNotifier(refreshServiceList)
-	
+	#BH
 	config.usage.hide_zap_errors = ConfigYesNo(default = False)
 	config.usage.hide_ci_messages = ConfigYesNo(default = False)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = True)
