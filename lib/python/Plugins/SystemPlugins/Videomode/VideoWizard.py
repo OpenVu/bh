@@ -30,12 +30,12 @@ class VideoWizard(WizardLanguage, Rc):
 			<panel name="WizardMarginsTemplate"/>
 			<panel name="WizardPictureLangTemplate"/>
 			<panel name="RemoteControlTemplate"/>
-			<panel position="left" size="10,*" />
-			<panel position="right" size="10,*" />
+			<panel position="left" size="10,300" />
+			<panel position="right" size="10,300" />
 			<panel position="fill">
-				<widget name="text" position="top" size="*,270" font="Regular;23" valign="center" />
+				<widget name="text" position="top" size="350,270" font="Regular;23" valign="center" />
 				<panel position="fill">
-					<panel position="left" size="150,*">
+					<panel position="left" size="150,200">
 						<widget name="portpic" position="top" zPosition="10" size="150,150" transparent="1" alphatest="on"/>
 					</panel>
 					<panel position="fill" layout="stack">
