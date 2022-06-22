@@ -38,6 +38,10 @@ def InitUsageConfig():
 
 	config.usage.hide_number_markers = ConfigYesNo(default=True)
 	config.usage.hide_number_markers.addNotifier(refreshServiceList)
+	
+	config.usage.hide_zap_errors = ConfigYesNo(default = False)
+	config.usage.hide_ci_messages = ConfigYesNo(default = False)
+	config.usage.show_infobar_on_event_change = ConfigYesNo(default = True)
 
 	config.usage.servicetype_icon_mode = ConfigSelection(default="0", choices=[("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
 	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
@@ -77,7 +81,7 @@ def InitUsageConfig():
 	config.usage.infobar_timeout = ConfigSelection(default="5", choices=choicelist)
 	config.usage.show_infobar_on_zap = ConfigYesNo(default=True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default=True)
-	config.usage.show_infobar_on_event_change = ConfigYesNo(default=False)
+	
 	config.usage.show_second_infobar = ConfigSelection(default="0", choices=[("", _("None"))] + choicelist + [("EPG", _("EPG"))])
 	config.usage.show_simple_second_infobar = ConfigYesNo(default=False)
 	config.usage.infobar_frontend_source = ConfigSelection(default="settings", choices=[("settings", _("Settings")), ("tuner", _("Tuner"))])
