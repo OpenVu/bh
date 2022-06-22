@@ -1,4 +1,4 @@
-installdir = $(pkglibdir)/python/Plugins/SystemPlugins/DemoPlugins
+installdir = $(pkglibdir)/python/Plugins/DemoPlugins
 
 install_PYTHON =	\
 	__init__.py 
