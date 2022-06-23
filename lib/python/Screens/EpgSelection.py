@@ -1,6 +1,7 @@
 from Screens.Screen import Screen
 from Screens import ChannelSelection
 import Screens.InfoBar
+from Components.Button import Button
 from Components.config import config, ConfigClock
 from Components.Pixmap import Pixmap
 from Components.Label import Label
@@ -39,7 +40,7 @@ class EPGSelection(Screen):
 		self.bouquetChangeCB = bouquetChangeCB
 		self.serviceChangeCB = serviceChangeCB
 		self.ask_time = -1 #now
-		self["key_red"] = StaticText("")
+		self["key_red"] = Button("")
 		self.closeRecursive = False
 		self.saved_title = None
 		self["Service"] = ServiceEvent()
@@ -47,17 +48,17 @@ class EPGSelection(Screen):
 		if isinstance(service, str) and eventid is not None:
 			self.type = EPG_TYPE_SIMILAR
 			self.setTitle(_("Similar EPG"))
-			self["key_yellow"] = StaticText()
-			self["key_blue"] = StaticText()
-			self["key_red"] = StaticText()
+			self["key_yellow"] = Button()
+			self["key_blue"] = Button()
+			self["key_red"] = Button()
 			self.currentService = service
 			self.eventid = eventid
 			self.zapFunc = None
 		elif isinstance(service, eServiceReference) or isinstance(service, str):
 			self.setTitle(_("Single EPG"))
 			self.type = EPG_TYPE_SINGLE
-			self["key_yellow"] = StaticText()
-			self["key_blue"] = StaticText(_("Select Channel"))
+			self["key_yellow"] = Button()
+			self["key_blue"] = Button(_("Select Channel"))
 			self.currentService = ServiceReference(service)
 			self.zapFunc = zapFunc
 			self.sort_type = 0
@@ -66,8 +67,8 @@ class EPGSelection(Screen):
 			self.setTitle(_("Multi EPG"))
 			self.skinName = "EPGSelectionMulti"
 			self.type = EPG_TYPE_MULTI
-			self["key_yellow"] = StaticText(pgettext("button label, 'previous screen'", "Prev"))
-			self["key_blue"] = StaticText(pgettext("button label, 'next screen'", "Next"))
+			self["key_yellow"] = Button(pgettext("button label, 'previous screen'", "Prev"))
+			self["key_blue"] = Button(pgettext("button label, 'next screen'", "Next"))
 			self["now_button"] = Pixmap()
 			self["next_button"] = Pixmap()
 			self["more_button"] = Pixmap()
@@ -81,7 +82,7 @@ class EPGSelection(Screen):
 			self.services = service
 			self.zapFunc = zapFunc
 		self.parent = parent
-		self["key_green"] = StaticText(_("Add timer"))
+		self["key_green"] = Button(_("Add timer"))
 		self.key_green_choice = self.ADD_TIMER
 		self.key_red_choice = self.EMPTY
 		self["list"] = EPGList(type=self.type, selChangedCB=self.onSelectionChanged, timer=session.nav.RecordTimer)
